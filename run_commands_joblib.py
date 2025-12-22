@@ -36,7 +36,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("commands_file", type=str, help="Ruta a commands/*.txt")
     ap.add_argument("-j", "--n-jobs", type=int, default=1, help="Número de procesos en paralelo")
-    ap.add_argument("--log-dir", type=str, default="logs", help="Directorio de logs")
+    ap.add_argument("--log-dir", type=str, default="/data/santiago.medina/deepunlearn/artifacts/logs", help="Directorio de logs")
+    ap.add_argument("--gpus", type=str, default="", help="Lista de GPUs tipo '0,1,2' (opcional)")
     args = ap.parse_args()
 
     commands_file = Path(args.commands_file)
