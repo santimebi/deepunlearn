@@ -14,7 +14,7 @@ from thirdparty.repdistiller.helper.util import (
 
 class CustomLoss(nn.Module):
 
-    _BETA_STABILIZER = 1e-12  # fixed small constant (NOT a hyperparameter)
+    _BETA_STABILIZER = 1e-12 
     def __init__(self, model: Module, c: float = 1.0, gamma: float = 1.0):
         super().__init__()
         self.cross_entropy = nn.CrossEntropyLoss()

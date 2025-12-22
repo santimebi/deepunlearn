@@ -2,7 +2,7 @@
 ARTIFACTS_DIR="artifacts"
 BASE_MODEL_INITIALIZATIONS=${ARTIFACTS_DIR}/model_initializations
 
-for DATASET in "mnist" "fashion_mnist" "cifar10" "cifar100" "utkface" ; do
+for DATASET in "mnist" "fashion_mnist" "cifar10" "cifar100" ; do
     ARTIFACTS_DATASET=${ARTIFACTS_DIR}/${DATASET}
     mkdir -p ${ARTIFACTS_DATASET}
     SYMLINK_TARGET="${ARTIFACTS_DATASET}/model_initializations"
