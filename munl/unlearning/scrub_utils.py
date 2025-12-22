@@ -146,7 +146,6 @@ def fgk_finetune(
     c: float = 1.0,
     gamma: float = 1.0,
 ):
-    # Loss: CE + beta * c * exp(-(dist**gamma))
     criterion = CustomLoss(model=model, c=c, gamma=gamma)
 
     optimizer = torch.optim.SGD([p for p in model.parameters() if p.requires_grad], lr=lr, weight_decay=0.0)

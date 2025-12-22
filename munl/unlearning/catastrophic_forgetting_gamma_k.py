@@ -46,9 +46,8 @@ class ForgettingGammaK(BaseUnlearner):
         "unlearner.cfg.learning_rate": munl.settings.HP_LEARNING_RATE,
         "unlearner.cfg.momentum": munl.settings.HP_MOMENTUM,
         "unlearner.cfg.num_blocks": munl.settings.HP_NUM_LAYERS,
-        "unlearner.cfg.c": munl.settings.HP_FLOAT,
-        "unlearner.cfg.gamma": munl.settings.HP_FLOAT,
-        "unlearner.cfg.beta": munl.settings.HP_FLOAT,
+        "unlearner.cfg.c": munl.settings.HP_POS_FLOAT,
+        "unlearner.cfg.gamma": munl.settings.HP_POS_FLOAT,
     }
 
     def __init__(
@@ -109,6 +108,8 @@ class ForgettingGammaK(BaseUnlearner):
             lr_decay_epochs=lr_decay_epochs,
             lr_decay_rate=lr_decay_rate,
             sgda_learning_rate=sgda_learning_rate,
+            c=self.cfg.c,
+            gamma=self.cfg.gamma,
         )
 
         return model
@@ -126,7 +127,6 @@ class DefaultForgettingGammaKConfig:
     momentum: float = ForgettingGammaK.ORIGINAL_MOMENTUM
     c: float = 1.0
     gamma: float = 1.0
-    beta: float = 1e-12
 
     scheduler: typ.Union[typ.Dict[str, typ.Any], None] = None
     criterion: typ.Union[typ.Dict[str, typ.Any], None] = None
