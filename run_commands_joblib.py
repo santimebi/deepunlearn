@@ -11,6 +11,7 @@ def run_one(cmd: str, log_dir: Path, idx: int, gpus: list[int] | None):
         return (idx, "SKIP", None)
 
     env = os.environ.copy()
+    env.setdefault("PYTHONPATH", ".")
 
     # Asignación simple de GPU round-robin (1 job -> 1 GPU visible)
     if gpus:
