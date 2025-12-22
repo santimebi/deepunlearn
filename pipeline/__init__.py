@@ -1,4 +1,4 @@
-DATASETS = ["cifar10", "cifar100", "mnist", "fashion_mnist", "utkface"]
+DATASETS = ["cifar10", "cifar100", "mnist", "fashion_mnist"]
 MODELS = ["resnet18", "vit11m"]
 MODEL_SEEDS = [0, 1, 2]
 ALL_MODEL_SEEDS = range(10)
@@ -21,6 +21,7 @@ UNLEARNERS = [
     "scrubv2",
     "influence",
     "cfk",
+    "catastrophic_forgetting_gamma_k",
     "euk",
 ]
 ALL_UNLEARNERS = UNLEARNERS + REFERENCES
