@@ -1,5 +1,5 @@
 from typing import Callable, Dict, Union
-
+import torch
 import matplotlib
 from matplotlib import colormaps
 from optuna.trial import Trial
