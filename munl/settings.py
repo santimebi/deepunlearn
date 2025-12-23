@@ -56,8 +56,8 @@ MARKERS = [
 
 MODEL_INIT_DIR = "model_initializations/"
 DEFAULT_MODEL_INIT_DIR = "unlearn/unlearner_original"
-# DEFAULT_DEVICE = "cpu"
-DEFAULT_DEVICE = "cuda"
+DEFAULT_DEVICE = "cpu"
+#DEFAULT_DEVICE = "cuda"
 
 DEFAULT_OPTUNA_N_TRIALS = 100
 DEFAULT_TRAINING_EPOCHS = 200

@@ -103,7 +103,8 @@ def load_model_state_dict(
         input_model_path
     ), f"Model {model_name} not found at {input_model_path}"
     logger.info(f"Loading model {model_name} from '{input_model_path}'")
-    state_dict = torch.load(input_model_path, map_location=torch.device(DEFAULT_DEVICE))
+    state_dict = torch.load(input_model_path, map_location="cpu") #FORZAR CPU
+    #state_dict = torch.load(input_model_path, map_location=torch.device(DEFAULT_DEVICE))
     model.load_state_dict(state_dict)
     return model
 
