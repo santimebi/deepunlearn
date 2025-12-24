@@ -54,8 +54,16 @@ def get_num_workers_from_shuffle(
     shuffle: bool, default: typ.Union[int, None] = None
 ) -> int:
     """If we are shuffling the data we do not neccesarily need to use multiple workers."""
+    # Allow hard override (critical when running many trainings in parallel)
+    env = os.getenv("MUNL_NUM_WORKERS")
+    if env is not None:
+        try:
+            return max(0, int(env))
+        except ValueError:
+            pass
     if default is None:
         default = int(get_allocated_cpus() // 2)
+        default = min(default, 8)
     return default
 
 
