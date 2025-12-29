@@ -54,7 +54,7 @@ def get_num_workers_from_shuffle(
     shuffle: bool, default: typ.Union[int, None] = None
 ) -> int:
     """If we are shuffling the data we do not neccesarily need to use multiple workers."""
-    # Allow hard override (critical when running many trainings in parallel)
+    # Allow hard override
     env = os.getenv("MUNL_NUM_WORKERS")
     if env is not None:
         try:
@@ -154,7 +154,8 @@ def convert_int_or_list_to_nparray(
 def setup_seed(seed):
     LOGGER.info(f"setup random seed = {seed}")
     torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
     np.random.seed(seed)
     random.seed(seed)
     torch.backends.cudnn.deterministic = True
