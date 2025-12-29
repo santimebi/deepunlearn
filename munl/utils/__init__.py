@@ -154,12 +154,10 @@ def convert_int_or_list_to_nparray(
 def setup_seed(seed):
     LOGGER.info(f"setup random seed = {seed}")
     torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(seed)
+    torch.cuda.manual_seed_all(seed)
     np.random.seed(seed)
     random.seed(seed)
-    torch.backends.cudnn.deterministic = False
-    torch.backends.cudnn.benchmark = True
+    torch.backends.cudnn.deterministic = True
 
 
 def interleave_outputs(first: Tensor, second: Tensor, origin: Tensor) -> Tensor:
