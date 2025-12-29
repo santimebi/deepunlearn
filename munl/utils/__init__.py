@@ -158,7 +158,8 @@ def setup_seed(seed):
         torch.cuda.manual_seed_all(seed)
     np.random.seed(seed)
     random.seed(seed)
-    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.deterministic = False
+    torch.backends.cudnn.benchmark = True
 
 
 def interleave_outputs(first: Tensor, second: Tensor, origin: Tensor) -> Tensor:
