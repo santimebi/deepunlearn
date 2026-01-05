@@ -50,6 +50,7 @@ def evaluate_model(
 
 import argparse
 from pathlib import Path
+from munl.paths import ARTIFACTS_PATH, DATA_PATH, FIXED_SPLITS_PATH, MODEL_INITIALIZATIONS_PATH
 
 import torch
 import torchvision
@@ -92,7 +93,7 @@ def evaluate_model_on_dataset(model, dataset, batch_size, random_state, device):
     )
     train_loader, retain_loader, forget_loader, val_loader, test_loader = (
         get_loaders_from_dataset_and_unlearner_from_cfg(
-            root=Path("."),
+            root=DATA_PATH,
             dataset_cfg=dataset_cfg,
             unlearner_cfg=unlearner_cfg,
             random_state=random_state,
@@ -201,9 +202,8 @@ def main(args):
         app.run()
     else:
         assert args.split_ndx is not None and args.forget_ndx is not None
-        root = Path(".")
         retain, forget, val, test = get_retain_forget_val_test_indices(
-            lira_path=root / "artifacts" / "lira" / "splits",
+            lira_path=ARTIFACTS_PATH / "lira" / "splits",
             split_ndx=args.split_ndx,
             forget_ndx=args.forget_ndx,
         )
@@ -214,7 +214,7 @@ def main(args):
 
         train_loader, retain_loader, forget_loader, val_loader, test_loader = (
             get_loaders_from_dataset_and_unlearner_from_cfg_with_indices(
-                root=root,
+                root=DATA_PATH,
                 indices=[np.concatenate([retain, forget]), retain, forget, val, test],
                 dataset_cfg=dataset_cfg,
                 unlearner_cfg=unlearner_cfg,

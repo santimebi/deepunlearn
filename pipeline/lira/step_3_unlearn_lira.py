@@ -5,6 +5,7 @@ import pathlib
 import uuid
 from datetime import datetime
 from pathlib import Path
+from munl.paths import ARTIFACTS_PATH
 from typing import Optional
 
 import hydra
@@ -24,6 +25,7 @@ from munl.configurations import (
     get_img_size_for_dataset,
 )
 from munl.models import get_model_from_cfg
+from munl.paths import ARTIFACTS_PATH
 from munl.settings import DEFAULT_RANDOM_STATE
 from pipeline.optuna_utils import get_loaders
 from pipeline.step_5_unlearn import UnlearnerApp
@@ -94,8 +96,8 @@ def zen_unlearn_lira_model(
     img_size = get_img_size_for_dataset(dataset_name)
     root = pathlib.Path(hydra.utils.get_original_cwd())
     unlearner.cfg.model_initializations_dir = "unlearn/original"
-    weights_root = root / "artifacts" / dataset_name / "artifacts" / "lira"
-    name_save_path = root / "artifacts" / dataset_name / "lira" / "unlearn"
+    weights_root = ARTIFACTS_PATH / dataset_name / "artifacts" / "lira"
+    name_save_path = ARTIFACTS_PATH / dataset_name / "lira" / "unlearn"
 
     model = get_model_from_cfg(
         root=weights_root,

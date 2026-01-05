@@ -1,6 +1,7 @@
 import argparse
 import copy
 from pathlib import Path
+from munl.paths import ARTIFACTS_PATH, DATA_PATH, FIXED_SPLITS_PATH, MODEL_INITIALIZATIONS_PATH
 
 import omegaconf
 from pipeline.optuna_utils import get_loaders
@@ -104,13 +105,13 @@ def to_optimize(
     if lira:
         naive_cfg.model_initializations_dir = "unlearn/naive"
         original_cfg.model_initializations_dir = "unlearn/original"
-        weights_root = root / "artifacts" / dataset_name / "artifacts" / "lira"
-        name_save_path = root / "artifacts" / dataset_name / "lira" / "unlearn"
+        weights_root = ARTIFACTS_PATH / dataset_name / "lira"
+        name_save_path = ARTIFACTS_PATH / dataset_name / "lira" / "unlearn"
     else:
         naive_cfg.model_initializations_dir = "unlearn/unlearner_naive"
         original_cfg.model_initializations_dir = "unlearn/unlearner_original"
-        weights_root = root / "artifacts" / dataset_name
-        name_save_path = root / "artifacts" / dataset_name / "unlearn"
+        weights_root = ARTIFACTS_PATH / dataset_name
+        name_save_path = ARTIFACTS_PATH / dataset_name / "unlearn"
 
     naive_model = get_model_from_cfg(
         root=weights_root,
@@ -228,7 +229,7 @@ def format_study_name(
 def format_optuna_save_dir(
     dataset_name: str, study_name: str, subdir: str = "optuna"
 ) -> Path:
-    save_dir = Path("artifacts") / f"{dataset_name}" / subdir / f"{study_name}"
+    save_dir = ARTIFACTS_PATH / f"{dataset_name}" / subdir / f"{study_name}"
     return save_dir
 
 

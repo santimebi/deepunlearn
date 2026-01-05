@@ -1,5 +1,6 @@
 import argparse
 from pathlib import Path
+from munl.paths import DATA_PATH, ARTIFACTS_PATH, FIXED_SPLITS_PATH
 
 import numpy as np
 import torch
@@ -17,7 +18,7 @@ def get_parser():
     parser.add_argument(
         "--lira_model_root",
         type=Path,
-        default=Path("artifacts/cifar10/lira/unlearn"),
+        default=ARTIFACTS_PATH / "cifar10" / "lira" / "unlearn",
     )
     parser.add_argument("--unlearner", type=str, required=True)
     parser.add_argument("--split_ndx", type=int, required=True)
