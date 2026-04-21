@@ -62,9 +62,9 @@ Como **Interesado en la Investigación (Stakeholder)**, quiero **un script que r
 - **Bloqueante para:** Ninguno. 
 
 **Criterios de Aceptación (AC):**
-- [ ] Crear (o extender) un script (ej. `generate_resnet18_cifar10_tables.py`) que parsee los logs de resultados existentes en `/reports/`.
-- [ ] Generar salidas duales (CSV y `.tex`) equivalentes a la **Tabla 1 del paper**: *Main Results*, evaluando los métodos con base en *Retention Deviation* (RetDev) e *Indiscernibility*.
-- [ ] Generar salidas duales equivalentes a la **Tabla 2 del paper**: *Run-time efficiency*, mostrando la eficiencia en tiempo de ejecución (RTE) de cada método vs. Retrain.
-- [ ] Generar salidas duales equivalentes a la **Tabla 6 del paper**: *Per dataset results*, con la granularidad exhaustiva requerida por el benchmark (RA, FA, TA, RR, FR, TR, RetDev, Indisc, T-MIA, RTE) únicamente para ResNet18+CIFAR10.
-- [ ] Generar salidas duales equivalentes a la **Tabla 13 del paper**: *Per Architectures Rankings*, agrupando el *ranking* de ResNet18.
-- [ ] Todas las tablas deben estructurarse en un directorio de salida como `/reports/paper_tables/`. Los ficheros `.tex` deben usar utilidades de pandas (como `to_latex`) con estilos formales (e.g. `booktabs`) sin índice numérico de filas, listos para importarse al documento maestro.
+- [x] Crear (o extender) un script (ej. `generate_resnet18_cifar10_tables.py`) que parsee los logs de resultados existentes en `/reports/`.
+- [x] Generar salidas duales (CSV y `.tex`) equivalentes a la **Tabla 1 del paper**: *Main Results*, evaluando los métodos con base en *Retention Deviation* (RetDev) e *Indiscernibility*.
+- [x] Generar salidas duales equivalentes a la **Tabla 2 del paper**: *Run-time efficiency*, mostrando la eficiencia en tiempo de ejecución (RTE) de cada método vs. Retrain.
+- [x] Generar salidas duales equivalentes a la **Tabla 6 del paper**: *Per dataset results*, con la granularidad exhaustiva requerida por el benchmark (RA, FA, TA, RR, FR, TR, RetDev, Indisc, T-MIA, RTE) únicamente para ResNet18+CIFAR10.
+- [x] Generar salidas duales equivalentes a la **Tabla 13 del paper**: *Per Architectures Rankings*, agrupando el *ranking* de ResNet18.
+- [x] Todas las tablas deben estructurarse en un directorio de salida como `/reports/paper_tables/`. Los ficheros `.tex` deben usar utilidades de pandas (como `to_latex`) con estilos formales (e.g. `booktabs`) sin índice numérico de filas, listos para importarse al documento maestro.
