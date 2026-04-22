@@ -6,6 +6,7 @@ import typing as typ
 import thirdparty.tiny_vit as tiny_vit
 from enum import Enum
 from pathlib import Path
+from munl.paths import ARTIFACTS_PATH, DATA_PATH, FIXED_SPLITS_PATH, MODEL_INITIALIZATIONS_PATH
 from typing import List
 
 import numpy as np
@@ -89,7 +90,7 @@ def get_save_path(
 
     overrides_str = "-".join(filtered_overrides).replace("/", "_").replace("=", "_")
 
-    artifacts_path = root / "artifacts"
+    artifacts_path = ARTIFACTS_PATH
     filename = Path(
         format_model_path(
             str(artifacts_path / dataset_name / step_name / f"{overrides_str}"),

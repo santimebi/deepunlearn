@@ -2,6 +2,7 @@
 
 import argparse
 from pathlib import Path
+from munl.paths import ARTIFACTS_PATH, DATA_PATH, FIXED_SPLITS_PATH, MODEL_INITIALIZATIONS_PATH
 
 import yaml
 
@@ -21,7 +22,7 @@ def get_parser():
     parser.add_argument(
         "--artifacts_dir",
         type=str,
-        default="artifacts",
+        default=ARTIFACTS_PATH,
         help="Path to the artifacts directory",
     )
     parser.add_argument("--no_strict", action="store_true")

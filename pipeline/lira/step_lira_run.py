@@ -5,6 +5,7 @@ from pipeline.optuna_search_hp import instantiate_objects
 from munl.datasets import get_loaders_from_dataset_and_unlearner_from_cfg_with_indices
 from munl.configurations import get_img_size_for_dataset
 from pathlib import Path
+from munl.paths import ARTIFACTS_PATH, DATA_PATH, FIXED_SPLITS_PATH, MODEL_INITIALIZATIONS_PATH
 import numpy as np
 
 
@@ -66,7 +67,7 @@ def main(args):
         unlearner.cfg.num_epochs = 91
 
     retain, forget, val, test = get_retain_forget_val_test_indices(
-        lira_path=root / "artifacts" / "lira" / "splits",
+        lira_path= ARTIFACTS_PATH / "lira" / "splits",
         split_ndx=split_ndx,
         forget_ndx=forget_ndx,
     )
@@ -80,7 +81,7 @@ def main(args):
         )
     )
 
-    model = app.get_model(root / "artifacts" / dataset_name)
+    model = app.get_model(ARTIFACTS_PATH / dataset_name)
     original_model, unlearned_model = app.run_from_model_and_loaders(
         root=root,
         model=model,

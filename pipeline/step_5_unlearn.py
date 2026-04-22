@@ -197,7 +197,7 @@ class UnlearnerApp:
             out_fo.write(f"time: {stop - start}\n")
         save_path.parent.mkdir(parents=True, exist_ok=True)
         torch.save(state_dict, f=save_path)
-        torch.save(state_dict, f="final_state.pt")
+        #torch.save(state_dict, f="final_state.pt")
         logger.info(f"Done unlearning using '{self.unlearner}', saved to '{save_path}'")
         # with open("exection_time.json", "w") as f:
         # json.dump({"time": stop - start}, f)

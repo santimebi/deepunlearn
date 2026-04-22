@@ -1,5 +1,6 @@
 import argparse
 from pathlib import Path
+from munl.paths import DATA_PATH, ARTIFACTS_PATH, FIXED_SPLITS_PATH, MODEL_INITIALIZATIONS_PATH
 from typing import List, Optional, Union
 
 from pandas import DataFrame
@@ -23,7 +24,7 @@ def get_parser():
     parser.add_argument("--objective", type=str, required=True)
     parser.add_argument("--model_seeds", type=parse_ints_as_list, default=[0, 1, 2])
     parser.add_argument(
-        "--output_path", type=parse_path, default=Path("artifacts/hyper_parameters.txt")
+        "--output_path", type=parse_path, default=ARTIFACTS_PATH / "hyper_parameters.txt"
     )
     parser.add_argument("--append", action="store_true", default=False)
     parser.add_argument("--quiet", action="store_true", default=False)

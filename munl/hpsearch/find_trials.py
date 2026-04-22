@@ -1,4 +1,5 @@
 from pathlib import Path
+from munl.paths import DATA_PATH, ARTIFACTS_PATH, FIXED_SPLITS_PATH, MODEL_INITIALIZATIONS_PATH
 from sqlite3 import OperationalError
 from typing import Optional
 
@@ -125,7 +126,7 @@ def generate_pt_list(
                 if best is None:
                     continue
                 best_number = best["number"].values[0]
-                target_path = str(Path("artifacts") / path / f"{best_number}.pt")
+                target_path = str(ARTIFACTS_PATH / path / f"{best_number}.pt")
                 dataset_to_unlearner_to_seed_to_path[dataset][unlearner][model_seed] = (
                     best_number,
                     target_path,

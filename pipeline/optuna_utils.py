@@ -1,6 +1,7 @@
 from typing import Optional
 from munl.datasets import get_loaders_from_dataset_and_unlearner_from_cfg
 from pathlib import Path
+from munl.paths import ARTIFACTS_PATH, DATA_PATH, FIXED_SPLITS_PATH, MODEL_INITIALIZATIONS_PATH
 import numpy as np
 from munl.datasets import (
     get_loaders_from_dataset_and_unlearner_from_cfg_with_indices,
@@ -22,7 +23,7 @@ def get_loaders(
         print("Loading LiRA split.")
         retain_indices, forget_indices, val_indices, test_indices = (
             get_retain_forget_val_test_indices(
-                lira_path=root / "artifacts" / "lira" / "splits",
+                lira_path= ARTIFACTS_PATH / "lira" / "splits",
                 split_ndx=split_ndx,
                 forget_ndx=forget_ndx,
             )
