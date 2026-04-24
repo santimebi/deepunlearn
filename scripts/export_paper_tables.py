@@ -79,13 +79,19 @@ def main():
     def export_dual(df, filename):
         # We explicitly round numeric types for clean output
         df = df.round(4)
-        df.to_csv(output_dir / f"{filename}.csv", index=False)
+        df.to_csv(output_dir / f"{filename}.csv")
         styled = df.style.format(precision=4)
+        try:
+            styled = styled.hide(axis='index')
+        except Exception:
+            try:
+                styled = styled.hide_index()
+            except Exception:
+                pass
         styled.to_latex(
             output_dir / f"{filename}.tex",
             column_format='l' + 'c' * (len(df.columns) - 1),
-            hrules=True,
-            index=False 
+            hrules=True 
         )
 
     # Table 1: Main Results (Method, RetDev, Indisc)
