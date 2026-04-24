@@ -84,7 +84,7 @@ class ForgettingGammaK(BaseUnlearner):
             int(sgda_epochs * 0.8),
             int(sgda_epochs * 0.9),
         ]  # Based on the original values
-        sgda_learning_rate = self.cfg.sgda_learning_rate
+        sgda_learning_rate = self.cfg.learning_rate
         lr_decay_rate = self.cfg.sgda_decay_rate
         sgda_weight_decay = self.cfg.sgda_weight_decay
         num_classes = get_num_classes_from_model(model)
