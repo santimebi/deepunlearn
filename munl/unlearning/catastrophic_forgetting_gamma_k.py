@@ -46,7 +46,7 @@ class ForgettingGammaK(BaseUnlearner):
         "unlearner.cfg.learning_rate": munl.settings.HP_LEARNING_RATE,
         "unlearner.cfg.momentum": munl.settings.HP_MOMENTUM,
         "unlearner.cfg.num_blocks": munl.settings.HP_NUM_LAYERS,
-        "unlearner.cfg.c": munl.settings.HP_POS_FLOAT,
+        "unlearner.cfg.c": munl.settings.HP_NONNEG_FLOAT,
         "unlearner.cfg.gamma": munl.settings.HP_POS_FLOAT,
     }
 
