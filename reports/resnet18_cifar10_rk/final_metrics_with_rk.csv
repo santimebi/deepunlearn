@@ -1,0 +1,2 @@
+method,seed,Retain,Forget,Test,runtime_seconds  ,RK@0.03,ExcessRK@0.03
+rurk,0,0.9,0.1,0.8,10,1.5,0.5
