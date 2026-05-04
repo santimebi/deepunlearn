@@ -1,15 +1,25 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import itertools
 import torch
 import torch.nn as nn
 from omegaconf import DictConfig
 from torch.utils.data import DataLoader
 from tqdm import tqdm
+import typing as typ
 
 import munl.settings
 from munl.models import get_optimizer_scheduler_criterion
 from munl.unlearning.common import BaseUnlearner
 from munl.evaluation.residual_knowledge import gaussian_perturb
+from munl.settings import default_loaders, DEFAULT_MODEL_INIT_DIR, default_criterion, default_scheduler
+
+def rurk_default_optimizer():
+    return {
+        "type": "torch.optim.SGD",
+        "learning_rate": 0.01,
+        "momentum": 0.9,
+        "weight_decay": 0.0005,
+    }
 
 @dataclass
 class DefaultRURKConfig:
@@ -22,6 +32,17 @@ class DefaultRURKConfig:
     tau: float = 0.03
     num_adv_samples: int = 1
     batch_size: int = 128
+    
+    optimizer: typ.Dict[str, typ.Any] = field(
+        default_factory=rurk_default_optimizer
+    )
+    scheduler: typ.Union[typ.Dict[str, typ.Any], None] = field(
+        default_factory=default_scheduler
+    )
+    criterion: typ.Dict[str, typ.Any] = field(default_factory=default_criterion)
+    model_initializations_dir: str = DEFAULT_MODEL_INIT_DIR
+    loaders: typ.Dict[str, typ.Any] = field(default_factory=default_loaders)
+
 
 class RURKUnlearner(BaseUnlearner):
     HYPER_PARAMETERS = munl.settings.HYPER_PARAMETERS
@@ -53,7 +74,10 @@ class RURKUnlearner(BaseUnlearner):
         
         # Override optimizer arguments based on config
         # This matches the signature of typical unlearners
+        from omegaconf import OmegaConf
+        OmegaConf.set_struct(self.cfg, False)
         self.cfg.num_epochs = self.cfg.epochs
+        OmegaConf.set_struct(self.cfg, True)
         optimizer, scheduler, criterion = get_optimizer_scheduler_criterion(model, self.cfg)
         model.to(device)
         model.train()

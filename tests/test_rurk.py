@@ -10,14 +10,14 @@ from munl.configurations import unlearner_store
 class DummyModel(nn.Module):
     def __init__(self):
         super().__init__()
-        self.fc = nn.Linear(10, 2)
+        self.fc = nn.Linear(3*32*32, 2)
         
     def forward(self, x):
-        return self.fc(x)
+        return self.fc(x.view(x.size(0), -1))
 
 def test_rurk_registered_in_store():
     # Verify RURK is registered in the unlearner store
-    assert "rurk" in unlearner_store["unlearner"]
+    assert ("unlearner", "rurk") in unlearner_store
 
 def test_rurk_instantiation():
     cfg = OmegaConf.structured(DefaultRURKConfig(epochs=1))
@@ -27,10 +27,10 @@ def test_rurk_instantiation():
 def test_rurk_model_updates_and_no_frozen_layers():
     # Create simple data
     torch.manual_seed(42)
-    x_r = torch.randn(10, 10)
+    x_r = torch.randn(10, 3, 32, 32)
     y_r = torch.randint(0, 2, (10,))
-    x_f = torch.randn(5, 10)
-    y_f = torch.randint(0, 2, (5,))
+    x_f = torch.randn(4, 3, 32, 32)
+    y_f = torch.randint(0, 2, (4,))
     
     retain_loader = DataLoader(TensorDataset(x_r, y_r), batch_size=2)
     forget_loader = DataLoader(TensorDataset(x_f, y_f), batch_size=2)
