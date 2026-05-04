@@ -266,6 +266,7 @@ METHODS_TO_READABLE = OrderedDict(
         "neggradplus": "NG+",
         "catastrophic_forgetting_gamma_k": "CF-γk",
         "rurk": "RURK",
+        "cfkg_rurk": "CF-γk+RURK",
     }
 )
 
@@ -296,6 +297,7 @@ METHODS_TO_COLOR = OrderedDict(
         "neggradplus": COLORS[19],
         "catastrophic_forgetting_gamma_k": COLORS[17],
         "rurk": COLORS[18],
+        "cfkg_rurk": COLORS[17],
     }
 )
 
@@ -332,6 +334,7 @@ METHODS_TO_MARKER = OrderedDict(
         "neggradplus": MARKERS[19],
         "catastrophic_forgetting_gamma_k": MARKERS[17],
         "rurk": MARKERS[18],
+        "cfkg_rurk": MARKERS[17],
     }
 )
 
