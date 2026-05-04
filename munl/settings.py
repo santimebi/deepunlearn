@@ -265,6 +265,7 @@ METHODS_TO_READABLE = OrderedDict(
         "euk": "EU-k",
         "neggradplus": "NG+",
         "catastrophic_forgetting_gamma_k": "CF-γk",
+        "rurk": "RURK",
     }
 )
 
@@ -294,6 +295,7 @@ METHODS_TO_COLOR = OrderedDict(
         "euk": COLORS[18],
         "neggradplus": COLORS[19],
         "catastrophic_forgetting_gamma_k": COLORS[17],
+        "rurk": COLORS[18],
     }
 )
 
@@ -329,6 +331,7 @@ METHODS_TO_MARKER = OrderedDict(
         "euk": MARKERS[18],
         "neggradplus": MARKERS[19],
         "catastrophic_forgetting_gamma_k": MARKERS[17],
+        "rurk": MARKERS[18],
     }
 )
 

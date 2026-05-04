@@ -314,6 +314,16 @@ class CFGKUnlearner:
     device: str = DEFAULT_DEVICE
 
 @dataclass
+@unlearner_store(name="rurk")
+class RURKUnlearnerConf:
+    from munl.unlearning.rurk import DefaultRURKConfig
+
+    _target_: str = "munl.unlearning.RURKUnlearner"
+    cfg: DefaultRURKConfig = field(default_factory=DefaultRURKConfig)
+    device: str = DEFAULT_DEVICE
+
+
+@dataclass
 @unlearner_store(name="euk")
 class EUKNUnlearner:
     from munl.unlearning.exact_unlearning_k import DefaultExactUnlearningKConfig
